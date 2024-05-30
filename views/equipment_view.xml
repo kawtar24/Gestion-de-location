@@ -1,0 +1,86 @@
+<odoo>
+    <data>
+        <!-- View for Equipment Form -->
+        <record id="view_equipment_form" model="ir.ui.view">
+            <field name="name">event.equipment.form</field>
+            <field name="model">event.equipment</field>
+            <field name="arch" type="xml">
+                <form string="Equipment Form">
+                    <header>
+                        <!-- Button to Save and Close Form -->
+                        <button name="action_save_and_close" type="object" string="Save and Close" class="btn-primary"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <!-- Fields for Equipment Information -->
+                            <field name="name"/>
+                            <field name="description"/>
+                            <field name="quantity"/>
+                            <field name="category_id"/>
+                            <!-- Field for Equipment Image -->
+                            <field name="image" widget="image" filename="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- View for Equipment Kanban/Card -->
+        <record id="view_equipment_kanban" model="ir.ui.view">
+            <field name="name">event.equipment.kanban</field>
+            <field name="model">event.equipment</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="name"/>
+                    <field name="description"/>
+                    <field name="quantity"/>
+                    <field name="category_id"/>
+                    <field name="image" widget="image" filename="name"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_card oe_kanban_global_click">
+                                <div class="oe_kanban_card_header" style="font-size: 12px;">
+                                    <!-- Equipment Name -->
+                                    <div class="oe_kanban_card_title">
+                                        <field name="name"/>
+                                    </div>
+                                </div>
+                                <div class="oe_kanban_card_content" style="font-size: 10px;">
+                                    <!-- Equipment Description -->
+                                    <field name="description"/>
+                                    <!-- Equipment Quantity -->
+                                    <field name="quantity"/>
+                                    <!-- Equipment Category -->
+                                    <field name="category_id"/>
+                                    <!-- Equipment Image -->
+                                    <field name="image" widget="image" filename="name" style="max-width: 100%; height: auto;"/>
+                                </div>
+                            </div>
+                        </t>
+                        <!-- Inline CSS for styling the Kanban cards -->
+                        <style>
+                            .oe_kanban_card {
+                                width: 150px; 
+                                height: auto; 
+                                margin: 5px;  
+                                padding: 10px;
+                            }
+                        </style>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- Action for Equipment Kanban View -->
+        <record id="action_event_equipment_kanban" model="ir.actions.act_window">
+            <field name="name">Equipment </field>
+            <field name="res_model">event.equipment</field>
+            <field name="view_mode">kanban,form</field>
+            <!-- Action to Open Equipment Form for Adding New Equipment -->
+            <field name="context">{"form_view_initial_mode": "edit"}</field>
+        </record>
+
+        <!-- Menu Item for Equipment Kanban View -->
+        <menuitem id="menu_event_equipment_kanban" name="Equipment" parent="menu_event_equipment_management" sequence="3" action="action_event_equipment_kanban"/>
+    </data>
+</odoo>

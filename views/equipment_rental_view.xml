@@ -1,0 +1,56 @@
+<odoo>
+    <!-- Menu for Rental Management -->
+    <menuitem id="menu_event_rental_management" name="Rental Management" parent="menu_event_management" sequence="20"/>
+
+    <!-- Rental Form View -->
+    <record id="view_equipment_rental_form" model="ir.ui.view">
+        <field name="name">event.equipment.rental.form</field>
+        <field name="model">event.equipment.rental</field>
+        <field name="arch" type="xml">
+            <form string="Equipment Rental Form">
+                <header>
+                    <button string="Confirm" type="object" name="action_confirm" class="btn-primary"/>
+                    <button string="Set to draft" type="object" name="action_draft"/>
+                    <button string="Mark as Returned" type="object" name="action_returned"/>
+                    <button string="Cancel" type="object" name="action_cancel"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="customer_id"/>
+                        <field name="equipment_id"/>
+                        <field name="rental_date"/>
+                        <field name="return_date"/>
+                        <field name="quantity"/>
+                        <field name="state"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Rental Tree View -->
+    <record id="view_equipment_rental_tree" model="ir.ui.view">
+        <field name="name">event.equipment.rental.tree</field>
+        <field name="model">event.equipment.rental</field>
+        <field name="arch" type="xml">
+            <tree string="Equipment Rental List">
+                <field name="customer_id"/>
+                <field name="equipment_id"/>
+                <field name="rental_date"/>
+                <field name="return_date"/>
+                <field name="quantity"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Rental Actions -->
+    <record id="action_event_equipment_rental" model="ir.actions.act_window">
+        <field name="name">Equipment Rentals</field>
+        <field name="res_model">event.equipment.rental</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Rental Menu Item -->
+    <menuitem id="menu_event_equipment_rental" name="Equipment Rentals" parent="menu_event_rental_management" sequence="1" action="action_event_equipment_rental"/>
+</odoo>

@@ -1,0 +1,45 @@
+<odoo>
+    <!-- Création du menu parent -->
+    <menuitem id="menu_event_management" name="Event Management" sequence="10"/>
+
+    <!-- Sous-menu pour la gestion des équipements -->
+    <menuitem id="menu_event_equipment_management" name="Equipment Management" parent="menu_event_management" sequence="10"/>
+
+    <!-- Menu pour les catégories d'équipements -->
+    <record id="view_category_form" model="ir.ui.view">
+        <field name="name">event.equipment.category.form</field>
+        <field name="model">event.equipment.category</field>
+        <field name="arch" type="xml">
+            <form string="Category Form">
+                <header>
+                    <button name="action_return_to_tree" type="object" string="Save and Close" class="btn-primary"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_category_tree" model="ir.ui.view">
+        <field name="name">event.equipment.category.tree</field>
+        <field name="model">event.equipment.category</field>
+        <field name="arch" type="xml">
+            <tree string="Category List">
+                <field name="name"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_event_equipment_category" model="ir.actions.act_window">
+        <field name="name">Equipment Categories</field>
+        <field name="res_model">event.equipment.category</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_event_equipment_category" name="Categories" parent="menu_event_equipment_management" sequence="1" action="action_event_equipment_category"/>
+</odoo>

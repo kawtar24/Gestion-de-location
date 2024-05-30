@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_event_customer,event.customer,model_event_customer,,1,1,1,1
+access_event_equipment_category,event.equipment.category,model_event_equipment_category,,1,1,1,1
+access_event_equipment,event.equipment,model_event_equipment,,1,1,1,1
+access_event_equipment_rental,event.equipment.rental,model_event_equipment_rental,,1,1,1,1

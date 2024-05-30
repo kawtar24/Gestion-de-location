@@ -1,0 +1,40 @@
+<odoo>
+    <record id="view_customer_form" model="ir.ui.view">
+        <field name="name">event.customer.form</field>
+        <field name="model">event.customer</field>
+        <field name="arch" type="xml">
+            <form string="Customer Form">
+                <header>
+                    <button name="action_return_to_tree" type="object" string="Save and Close" class="btn-primary"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="email"/>
+                        <field name="phone"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_customer_tree" model="ir.ui.view">
+        <field name="name">event.customer.tree</field>
+        <field name="model">event.customer</field>
+        <field name="arch" type="xml">
+            <tree string="Customer List">
+                <field name="name"/>
+                <field name="email"/>
+                <field name="phone"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_event_customer" model="ir.actions.act_window">
+        <field name="name">Customers</field>
+        <field name="res_model">event.customer</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_event_customer" name="Customers" parent="menu_event_management" sequence="4" action="action_event_customer"/>
+</odoo>
